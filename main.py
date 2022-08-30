@@ -1,0 +1,34 @@
+from tkinter import *
+from pygame import mixer
+from game import game
+
+win = Tk()  # this was our game main menu have cover page of our game with start button
+win.title("menu")
+win.iconbitmap("icon.ico")
+win.geometry("1100x730")
+win.config(bg="black")
+width = win.winfo_screenwidth()
+height = win.winfo_screenheight()
+win.geometry("%dx%d+0+0" % (width, height))
+bg = PhotoImage(file="snake cover.gif")  # image for the screen
+my_label = Label(win, image=bg)
+my_label.pack()
+
+mixer.init()
+mixer.music.load("Snake0.wav")  # music for the screen
+mixer.music.play(-1)
+
+
+def startt():
+    win.destroy()  # and see here we have destroyed the present screen when we click start and runs the game
+    game()  # this was our main game module
+
+
+start = PhotoImage(file="button1.gif")
+button_start = Label(win, image=start)
+button_start.place(x=610, y=530)
+
+start_but = Button(win, image=start, command=startt, borderwidth=0)
+start_but.place(x=610, y=530)
+
+win.mainloop()
